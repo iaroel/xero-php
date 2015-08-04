@@ -31,7 +31,7 @@ abstract class Application {
             CURLOPT_USERAGENT      => 'XeroPHP',
             CURLOPT_CONNECTTIMEOUT => 30,
             CURLOPT_TIMEOUT        => 20,
-            CURLOPT_SSL_VERIFYPEER => 2,
+            CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => 2,
             CURLOPT_FOLLOWLOCATION => false,
             CURLOPT_PROXY          => false,
