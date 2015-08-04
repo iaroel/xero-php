@@ -230,7 +230,31 @@ class Response {
         }
 
     }
-
+    // Array results
+    public function parseArray()
+    {
+        $sxml = new SimpleXMLElement($this->response_body);
+        $send=[];
+        foreach($sxml as $child_index => $root_child) {
+            switch($child_index) {
+                case 'ErrorNumber':
+                    $send['errror']['code']=(string) $root_child;
+                    break;
+                case 'Type':
+                    $send['errror']['type']=(string) $root_child;
+                    break;
+                case 'Message':
+                    $send['errror']['message']=(string) $root_child;
+                    break;
+                default:
+                   
+                    foreach($root_child->children() as $element_index => $element){                        
+                        $send['result']=Helpers::XMLToArray($element);
+                    }
+            }
+        }
+        return $send;
+    }
     public function parseJSON() {
         $json = json_decode($this->response_body, true);
 
